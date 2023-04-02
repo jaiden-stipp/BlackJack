@@ -1,6 +1,9 @@
 import time
 import random
 #Intro text
+def end_game():
+        print("\nThanks for playing!")
+        quit()
 logo = """
 \n-----------------------------------------------------------------------------------------
 $$$$$$$\  $$\        $$$$$$\   $$$$$$\  $$\   $$\   $$$$$\  $$$$$$\   $$$$$$\  $$\   $$\ 
@@ -37,6 +40,24 @@ if bet == balance:
     else:
         print("\nThank you for playing")
         quit()
+#dealer class
+
+class Dealer():
+    def __init__(self, dealer_hand=0):
+        self.dhand = dealer_hand
+    def draw(self):
+        card = random.randint(1,11)
+        return card
+    def dealer_hand(self):
+        card1 = Dealer.draw(self)
+        card2 = Dealer.draw_(self)
+        self.dhand += card1
+        self.dhand += card2
+        return self.dhand
+
+
+#player class
+
 class Player():
     player_list = []
 
@@ -45,15 +66,13 @@ class Player():
         self.balance = player_balance
         self.hand = player_hand
         self.bet = player_bet
-    def draw_card(self):
-        card = random.randint(1,11)
-        return card
-    def end_game(self):
-        print("\nThanks for playing!")
-        quit()
+        self.hit_count = 0
+    #def draw_card(self):
+       # card = random.randint(1,11)
+       # return card
     def deal_hand(self):
-        card1 = Player.draw_card(self)
-        card2 = Player.draw_card(self)
+        card1 = Dealer.draw(self)
+        card2 = Dealer.draw(self)
         self.hand += card1
         self.hand += card2
         print(card1, card2)
@@ -64,10 +83,10 @@ class Player():
             return "Blackjack!"
         print("Total:")
         return self.hand
-    
     def hit(self):
-        card = Player.draw_card(self)
+        card = Dealer.draw(self)
         self.hand += card
+        self.hit_count += 1
         print("\nCard Pulled:", card)
         print()
         if self.hand > 21:
@@ -76,7 +95,10 @@ class Player():
             quit()
         elif self.hand < 21:
             print(self.hand)
-            return
+            hit_count += 1
+            self.hit_stand()
+
+            
 
         elif self.hand == 21:
             print("\nBlackJack!")
@@ -86,7 +108,16 @@ class Player():
             print("You cannot hit")
     def stand(self):
         pass
-    
+    def hit_stand(self):
+        action_input = ""
+        print("\nWould you like to hit or stand?")
+        action_input = str(input())
+        if action_input == "hit" or input == "Hit" or input == "h":
+            print(self.hit())
+            
+        if action_input == "stand" or input == "Stand" or input == "s":
+            print(self.stand())
+            
 player1 = Player(name, balance)
 time.sleep(1)
 print("Your Hand:")
@@ -105,7 +136,5 @@ print(player1.hit_stand())
         
     
 
-class Dealer():
-    def __init__(self, dealer_hand):
-        self.hand = dealer_hand
+
 
