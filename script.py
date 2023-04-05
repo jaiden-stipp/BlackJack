@@ -17,29 +17,7 @@ $$$$$$$  |$$$$$$$$\ $$ |  $$ |\$$$$$$  |$$ | \$$\\$$$$$$  |$$ |  $$ |\$$$$$$  |$
  ----------------------------------------------------------------------------------------                                                                                        
                                                                                          """
 print(logo + "\n\n")
-print("Hello! Please enter your name below: \n")
-name = str(input())
-print("\nWelcome " + name + "!\n")
-time.sleep(1)
-print("How much money are you putting on the table today?\n")
-balance = float(input())
-print("\nCurrent Balance: ${}\n".format(balance))
-time.sleep(1)
-bet = 0
-print("How much would you like to bet on the current game?\n")
-bet_input = input()
-bet += float(bet_input)
-if bet > balance:
-    print("\nInvalid Bet, please try again")
-    quit()
-if bet == balance:
-    print("Are you sure you'd like to proceed with betting your entire balance? Enter Y for yes and N for no\n")
-    exit_or_play = input()
-    if exit_or_play == "y" or exit_or_play == 'Y':
-        pass
-    else:
-        print("\nThank you for playing")
-        quit()
+
 #dealer class
 
 class Dealer():
